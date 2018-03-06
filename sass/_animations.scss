@@ -1,0 +1,32 @@
+@keyframes taskbar-new-item
+{
+  from
+  {
+    opacity: 0;
+    transform: scale( .75 );
+  }
+
+  50%
+  {
+    opacity: 1;
+  }
+}
+
+@keyframes app-open
+{
+  from
+  {
+    opacity: 0;
+    transform: scale( .75 );
+  }
+}
+
+@keyframes app-minimize
+{
+  to
+  {
+    opacity: 0;
+    transform: translateY( 50% ) scale( .5 );
+    display: none;
+  }
+}

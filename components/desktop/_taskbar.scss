@@ -1,0 +1,55 @@
+.taskbar
+{
+  position: absolute;
+  right: $rule;
+  bottom: $rule;
+  left: $rule;
+  display: flex;
+  justify-content: center;
+}
+
+.taskbar-item
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 0 $rule / 3;
+  color: $color03;
+  animation: taskbar-new-item .4s;
+  transition: color .25s;
+
+  &.is-focus
+  {
+    color: $color06;
+  }
+}
+
+.taskbar-item-icon
+{
+  position: relative;
+  width: $rule * 2;
+  height: $rule * 2;
+  margin-bottom: $rule / 4;
+  border-radius: 50%;
+  background-color: $color01;
+
+  &:after
+  {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include icon('photo_library');
+  }
+}
+
+.taskbar-item-title
+{
+  font-weight: 700;
+}

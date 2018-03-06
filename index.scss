@@ -1,0 +1,17 @@
+@import 'sass/reset';
+@import 'sass/animations';
+@import 'sass/typography';
+@import 'sass/global';
+@import 'sass/colors';
+
+html
+{
+  font-family: Muli, sans-serif;
+  font-size: 110%;
+}
+
+// components
+@import 'components/desktop/desktop';
+@import 'components/desktop/taskbar';
+@import 'components/app/app';
+@import 'components/media/manager/manager';

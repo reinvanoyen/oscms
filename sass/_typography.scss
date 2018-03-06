@@ -1,0 +1,28 @@
+@mixin title01
+{
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+}
+
+@mixin title02
+{
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+}
+
+@mixin icon( $icon, $size: $rule )
+{
+  content: $icon;
+  font-family: 'Material Icons', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: $size;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+}

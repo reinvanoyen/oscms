@@ -1,0 +1,13 @@
+.media-manager-items
+{
+  display: grid;
+  grid-template-columns: repeat( 10, 5fr );
+  grid-gap: 1rem
+}
+
+.media-manager-dir
+{
+  width: 5rem;
+  height: 5rem;
+  background-color: #eeeeee;
+}

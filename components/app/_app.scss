@@ -1,0 +1,82 @@
+.app
+{
+  position: absolute;
+  background-color: $color01;
+  box-shadow: 0 0 $rule / 2 rgba( $color04, .1 );
+  transform: scale( 0.95 );
+  animation: app-open .25s;
+  transition: transform .25s;
+
+  &:after
+  {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba( $color05, .4 );
+  }
+
+  &.is-focus
+  {
+    z-index: 9999;
+    box-shadow: 0 0 $rule rgba( $color04, .2 );
+    transform: scale( 1 );
+
+    &:after { display: none; }
+  }
+
+  &.is-minimize
+  {
+    animation: app-minimize .25s;
+    animation-fill-mode: both;
+  }
+
+  &.is-maximize
+  {
+    top: 0 !important; // @TODO fix important, that's dirty
+    left: 0 !important;
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+.app-header
+{
+  min-width: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+}
+
+.app-header-title
+{
+  @include title02;
+  color: #333;
+}
+
+.app-header-actions
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  button
+  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    width: $rule;
+    height: $rule;
+    border-radius: 50%;
+    transition: background-color .25s;
+
+    &:hover
+    {
+      background-color: $color05;
+    }
+  }
+}

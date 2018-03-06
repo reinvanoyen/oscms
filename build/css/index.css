@@ -1,0 +1,214 @@
+html {
+  font-size: 62.5%; }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  font-weight: inherit;
+  font-style: inherit;
+  cursor: default;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none; }
+
+a {
+  text-decoration: none;
+  font-weight: inherit;
+  color: inherit; }
+  a img {
+    border: 0; }
+
+li {
+  list-style: none; }
+
+fieldset {
+  border: 0; }
+
+button {
+  border: 0;
+  text-align: left;
+  background: transparent; }
+
+*:focus {
+  outline: none; }
+
+button, input, textarea {
+  font: inherit; }
+
+@keyframes taskbar-new-item {
+  from {
+    opacity: 0;
+    transform: scale(0.75); }
+  50% {
+    opacity: 1; } }
+
+@keyframes app-open {
+  from {
+    opacity: 0;
+    transform: scale(0.75); } }
+
+@keyframes app-minimize {
+  to {
+    opacity: 0;
+    transform: translateY(50%) scale(0.5);
+    display: none; } }
+
+html {
+  font-family: Muli, sans-serif;
+  font-size: 110%; }
+
+.desktop {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 10rem;
+  background-color: #eee; }
+
+.desktop-apps {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  color: #333; }
+  .desktop-apps div {
+    display: block;
+    margin-bottom: 1rem; }
+    .desktop-apps div:focus, .desktop-apps div:active {
+      color: #2e4cff; }
+    .desktop-apps div:last-child {
+      margin-bottom: 0; }
+
+.taskbar {
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+  left: 2rem;
+  display: flex;
+  justify-content: center; }
+
+.taskbar-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 0 0.66667rem;
+  color: #555;
+  animation: taskbar-new-item .4s;
+  transition: color .25s; }
+  .taskbar-item.is-focus {
+    color: #2e4cff; }
+
+.taskbar-item-icon {
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: 0.5rem;
+  border-radius: 50%;
+  background-color: #fff; }
+  .taskbar-item-icon:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    content: "photo_library";
+    font-family: 'Material Icons', sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 2rem;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr; }
+
+.taskbar-item-title {
+  font-weight: 700; }
+
+.app {
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+  transform: scale(0.95);
+  animation: app-open .25s;
+  transition: transform .25s; }
+  .app:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(238, 238, 238, 0.4); }
+  .app.is-focus {
+    z-index: 9999;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
+    transform: scale(1); }
+    .app.is-focus:after {
+      display: none; }
+  .app.is-minimize {
+    animation: app-minimize .25s;
+    animation-fill-mode: both; }
+  .app.is-maximize {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw;
+    height: 100vh; }
+
+.app-header {
+  min-width: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem; }
+
+.app-header-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  color: #333; }
+
+.app-header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+  .app-header-actions button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    transition: background-color .25s; }
+    .app-header-actions button:hover {
+      background-color: #eee; }
+
+.media-manager-items {
+  display: grid;
+  grid-template-columns: repeat(10, 5fr);
+  grid-gap: 1rem; }
+
+.media-manager-dir {
+  width: 5rem;
+  height: 5rem;
+  background-color: #eeeeee; }
