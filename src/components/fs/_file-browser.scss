@@ -1,0 +1,19 @@
+.file-browser
+{
+  padding: $rule;
+  padding-top: 0;
+}
+
+.file-browser-items
+{
+  display: grid;
+  grid-template-columns: repeat( 7, 5fr );
+  grid-gap: $rule / 2;
+}
+
+.file-browser-dir
+{
+  width: 5rem;
+  height: 5rem;
+  background-color: $color01;
+}

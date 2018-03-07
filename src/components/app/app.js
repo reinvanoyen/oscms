@@ -1,9 +1,9 @@
 "use strict";
 
 import ponnie from 'ponnie';
-import MediaManager from '../media/manager/manager';
+import FileManager from '../fs/manager/manager';
 
-ponnie.register('media-manager', MediaManager);
+ponnie.register('file-manager', FileManager);
 
 export default class App extends ponnie.Component {
 
@@ -53,7 +53,7 @@ export default class App extends ponnie.Component {
           </div>
         </div>
         <div class="app-content">
-          <media-manager />
+          <file-manager />
         </div>
       </div>
     );

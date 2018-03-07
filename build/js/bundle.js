@@ -7,480 +7,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _ponnie = require('ponnie');
-
-var _ponnie2 = _interopRequireDefault(_ponnie);
-
-var _manager = require('../media/manager/manager');
-
-var _manager2 = _interopRequireDefault(_manager);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-_ponnie2.default.register('media-manager', _manager2.default);
-
-var App = function (_ponnie$Component) {
-  _inherits(App, _ponnie$Component);
-
-  function App() {
-    _classCallCheck(this, App);
-
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, {
-      title: 'unknown',
-      isFocus: false,
-      isMaximize: false,
-      isMinimize: false,
-      positionStyle: 'top: ' + Math.floor(Math.random() * 50) + '%; left: ' + Math.floor(Math.random() * 50) + '%;'
-    }));
-  }
-
-  _createClass(App, [{
-    key: 'maximize',
-    value: function maximize(e) {
-      if (!this.data.isMaximize) {
-        this.trigger('maximize');
-      }
-      e.stopPropagation();
-    }
-  }, {
-    key: 'focus',
-    value: function focus() {
-      if (!this.data.isFocus) {
-        this.trigger('focus');
-      }
-    }
-  }, {
-    key: 'close',
-    value: function close(e) {
-      this.trigger('close');
-      e.stopPropagation();
-    }
-  }, {
-    key: 'minimize',
-    value: function minimize(e) {
-      this.trigger('minimize');
-      e.stopPropagation();
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      console.log(this.data.isMaximize);
-      return _ponnie2.default.vnode(
-        'div',
-        { 'class': 'app' + (this.data.isFocus ? ' is-focus' : '') + (this.data.isMinimize ? ' is-minimize' : '') + (this.data.isMaximize ? ' is-maximize' : ''), style: this.data.positionStyle, 'p-click': this.focus },
-        _ponnie2.default.vnode(
-          'div',
-          { 'class': 'app-header' },
-          _ponnie2.default.vnode(
-            'div',
-            { 'class': 'app-header-title' },
-            this.data.title
-          ),
-          _ponnie2.default.vnode(
-            'div',
-            { 'class': 'app-header-actions' },
-            _ponnie2.default.vnode(
-              'button',
-              { 'p-click': this.minimize },
-              '-'
-            ),
-            _ponnie2.default.vnode(
-              'button',
-              { 'p-click': this.maximize },
-              '+'
-            ),
-            _ponnie2.default.vnode(
-              'button',
-              { 'p-click': this.close },
-              'x'
-            )
-          )
-        ),
-        _ponnie2.default.vnode(
-          'div',
-          { 'class': 'app-content' },
-          _ponnie2.default.vnode('media-manager', null)
-        )
-      );
-    }
-  }]);
-
-  return App;
-}(_ponnie2.default.Component);
-
-exports.default = App;
-
-},{"../media/manager/manager":4,"ponnie":7}],2:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _ponnie = require('ponnie');
-
-var _ponnie2 = _interopRequireDefault(_ponnie);
-
-var _taskbar = require('./taskbar');
-
-var _taskbar2 = _interopRequireDefault(_taskbar);
-
-var _app = require('../app/app');
-
-var _app2 = _interopRequireDefault(_app);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-_ponnie2.default.register('taskbar', _taskbar2.default);
-_ponnie2.default.register('app', _app2.default);
-
-var appId = 0;
-
-var Desktop = function (_ponnie$Component) {
-  _inherits(Desktop, _ponnie$Component);
-
-  function Desktop() {
-    _classCallCheck(this, Desktop);
-
-    return _possibleConstructorReturn(this, (Desktop.__proto__ || Object.getPrototypeOf(Desktop)).call(this, {
-      installedApps: [{
-        title: 'Pages'
-      }, {
-        title: 'Projects'
-      }, {
-        title: 'Media library'
-      }, {
-        title: 'Inbox'
-      }],
-      activeApps: []
-    }));
-  }
-
-  _createClass(Desktop, [{
-    key: 'newAppProcess',
-    value: function newAppProcess(i) {
-      appId++;
-      var appData = Object.assign({}, this.data.installedApps[i]);
-
-      appData.id = appId;
-      appData.index = i;
-      appData.isFocus = false;
-      appData.isMinize = false;
-      appData.isMaximize = false;
-
-      this.data.activeApps.push(appData);
-      this.focusApp(appData.id);
-    }
-  }, {
-    key: 'focusNextApp',
-    value: function focusNextApp() {
-      var _this2 = this;
-
-      this.data.activeApps.forEach(function (app) {
-        if (!app.isMinimize && !app.isFocus) {
-          _this2.focusApp(app.id);
-        }
-      });
-    }
-  }, {
-    key: 'closeApp',
-    value: function closeApp(appId) {
-      var reqAppIndex = this.data.activeApps.findIndex(function (app) {
-        return app.id === appId;
-      });
-      this.data.activeApps.splice(reqAppIndex, 1);
-      this.update();
-      this.focusNextApp();
-    }
-  }, {
-    key: 'toggleApp',
-    value: function toggleApp(appId) {
-      var _this3 = this;
-
-      this.data.activeApps.forEach(function (app) {
-        if (app.id === appId) {
-          if (app.isFocus) {
-            _this3.minimizeApp(appId);
-          } else {
-            _this3.focusApp(appId);
-          }
-        }
-      });
-    }
-  }, {
-    key: 'focusApp',
-    value: function focusApp(appId) {
-      console.log('focus', appId);
-      this.data.activeApps.forEach(function (app) {
-        app.isFocus = app.id === appId;
-        if (app.isFocus && app.isMinimize) {
-          app.isMinimize = false;
-        }
-      });
-      this.update();
-    }
-  }, {
-    key: 'blurApp',
-    value: function blurApp(appId) {
-      console.log('blur', appId);
-      var reqApp = this.data.activeApps.find(function (app) {
-        return app.id === appId;
-      });
-      reqApp.isFocus = false;
-      this.update();
-    }
-  }, {
-    key: 'minimizeApp',
-    value: function minimizeApp(appId) {
-      console.log('minimize', appId);
-      this.data.activeApps.forEach(function (app) {
-        if (app.id === appId) {
-          app.isMinimize = true;
-        }
-      });
-      this.blurApp(appId);
-      this.focusNextApp();
-    }
-  }, {
-    key: 'maximizeApp',
-    value: function maximizeApp(appId) {
-      console.log('maximize', appId);
-      this.data.activeApps.forEach(function (app) {
-        if (app.id === appId) {
-          app.isMaximize = true;
-        }
-      });
-      this.update();
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this4 = this;
-
-      return _ponnie2.default.vnode(
-        'div',
-        { 'class': 'desktop' },
-        _ponnie2.default.vnode(
-          'div',
-          { 'class': 'desktop-apps' },
-          this.data.installedApps.map(function (app, i) {
-            return _ponnie2.default.vnode(
-              'div',
-              { 'p-click': function pClick(e) {
-                  return _this4.newAppProcess(i);
-                } },
-              app.title
-            );
-          })
-        ),
-        this.data.activeApps.map(function (app) {
-          return _ponnie2.default.vnode('app', { 'p-key': 'app-' + app.id, title: _this4.data.installedApps[app.index].title, isMaximize: app.isMaximize, isMinimize: app.isMinimize, isFocus: app.isFocus, 'p-focus': function pFocus(e) {
-              return _this4.focusApp(app.id);
-            }, 'p-maximize': function pMaximize(e) {
-              return _this4.maximizeApp(app.id);
-            }, 'p-close': function pClose(e) {
-              return _this4.closeApp(app.id);
-            }, 'p-minimize': function pMinimize(e) {
-              return _this4.minimizeApp(app.id);
-            } });
-        }),
-        _ponnie2.default.vnode('taskbar', { activeApps: this.data.activeApps, 'p-toggle': function pToggle(e) {
-            return _this4.toggleApp(e.id);
-          } })
-      );
-    }
-  }]);
-
-  return Desktop;
-}(_ponnie2.default.Component);
-
-exports.default = Desktop;
-
-},{"../app/app":1,"./taskbar":3,"ponnie":7}],3:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _ponnie = require('ponnie');
-
-var _ponnie2 = _interopRequireDefault(_ponnie);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Taskbar = function (_ponnie$Component) {
-  _inherits(Taskbar, _ponnie$Component);
-
-  function Taskbar() {
-    _classCallCheck(this, Taskbar);
-
-    return _possibleConstructorReturn(this, (Taskbar.__proto__ || Object.getPrototypeOf(Taskbar)).call(this, {
-      activeApps: []
-    }));
-  }
-
-  _createClass(Taskbar, [{
-    key: 'toggleApp',
-    value: function toggleApp(appId) {
-      this.trigger('toggle', { id: appId });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      return _ponnie2.default.vnode(
-        'div',
-        { 'class': 'taskbar' },
-        this.data.activeApps.map(function (app) {
-          return _ponnie2.default.vnode(
-            'div',
-            { 'p-key': 'app-' + app.id, 'class': 'taskbar-item' + (app.isFocus ? ' is-focus' : ''), 'p-click': function pClick(e) {
-                return _this2.toggleApp(app.id);
-              } },
-            _ponnie2.default.vnode('div', { 'class': 'taskbar-item-icon' }),
-            _ponnie2.default.vnode(
-              'div',
-              { 'class': 'taskbar-item-title' },
-              app.title
-            )
-          );
-        })
-      );
-    }
-  }]);
-
-  return Taskbar;
-}(_ponnie2.default.Component);
-
-exports.default = Taskbar;
-
-},{"ponnie":7}],4:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _ponnie = require('ponnie');
-
-var _ponnie2 = _interopRequireDefault(_ponnie);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Manager = function (_ponnie$Component) {
-  _inherits(Manager, _ponnie$Component);
-
-  function Manager() {
-    _classCallCheck(this, Manager);
-
-    var rand = Math.floor(Math.random() * 35);
-    var dirs = [];
-    for (var i = 0; i < rand; i++) {
-      dirs.push({
-        title: 'My directory'
-      });
-    }
-
-    return _possibleConstructorReturn(this, (Manager.__proto__ || Object.getPrototypeOf(Manager)).call(this, {
-      dirs: dirs,
-      files: []
-    }));
-  }
-
-  _createClass(Manager, [{
-    key: 'fillRandom',
-    value: function fillRandom() {
-
-      var rand = Math.floor(Math.random() * 20);
-      for (var i = 0; i < rand; i++) {
-        this.data.dirs.push({
-          title: 'My directory'
-        });
-      }
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return _ponnie2.default.vnode(
-        'div',
-        { 'class': 'media-manager' },
-        _ponnie2.default.vnode(
-          'div',
-          { 'class': 'media-manager-items' },
-          this.data.dirs.map(function (dir) {
-            return _ponnie2.default.vnode(
-              'div',
-              { 'class': 'media-manager-dir' },
-              dir.title
-            );
-          })
-        )
-      );
-    }
-  }]);
-
-  return Manager;
-}(_ponnie2.default.Component);
-
-exports.default = Manager;
-
-},{"ponnie":7}],5:[function(require,module,exports){
-"use strict";
-
-var _ponnie = require('ponnie');
-
-var _ponnie2 = _interopRequireDefault(_ponnie);
-
-var _desktop = require('./components/desktop/desktop');
-
-var _desktop2 = _interopRequireDefault(_desktop);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var desktop = new _desktop2.default();
-_ponnie2.default.mount(desktop, document.body);
-
-},{"./components/desktop/desktop":2,"ponnie":7}],6:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _vdom = require("./vdom");
 
 var _vdom2 = _interopRequireDefault(_vdom);
@@ -571,7 +97,7 @@ var Component = function () {
 }();
 
 exports.default = Component;
-},{"./vdom":9}],7:[function(require,module,exports){
+},{"./vdom":4}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -601,7 +127,7 @@ var ponnie = {
 };
 
 exports.default = ponnie;
-},{"./component":6,"./registry":8,"./vnode":10}],8:[function(require,module,exports){
+},{"./component":1,"./registry":3,"./vnode":5}],3:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -639,7 +165,7 @@ var ComponentRegistry = new Registry();
 
 exports.TagRegistry = TagRegistry;
 exports.ComponentRegistry = ComponentRegistry;
-},{}],9:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -909,7 +435,7 @@ var vdom = {
 };
 
 exports.default = vdom;
-},{"./registry":8}],10:[function(require,module,exports){
+},{"./registry":3}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -924,4 +450,793 @@ function h(tag, attrs) {
   children = [].concat.apply([], children);
   return { tag: tag, attrs: attrs, children: children };
 }
-},{}]},{},[5]);
+},{}],6:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _ponnie = require('ponnie');
+
+var _ponnie2 = _interopRequireDefault(_ponnie);
+
+var _manager = require('../fs/manager/manager');
+
+var _manager2 = _interopRequireDefault(_manager);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+_ponnie2.default.register('file-manager', _manager2.default);
+
+var App = function (_ponnie$Component) {
+  _inherits(App, _ponnie$Component);
+
+  function App() {
+    _classCallCheck(this, App);
+
+    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, {
+      title: 'unknown',
+      isFocus: false,
+      isMaximize: false,
+      isMinimize: false,
+      positionStyle: 'top: ' + Math.floor(Math.random() * 50) + '%; left: ' + Math.floor(Math.random() * 50) + '%;'
+    }));
+  }
+
+  _createClass(App, [{
+    key: 'maximize',
+    value: function maximize(e) {
+      if (!this.data.isMaximize) {
+        this.trigger('maximize');
+      }
+      e.stopPropagation();
+    }
+  }, {
+    key: 'focus',
+    value: function focus() {
+      if (!this.data.isFocus) {
+        this.trigger('focus');
+      }
+    }
+  }, {
+    key: 'close',
+    value: function close(e) {
+      this.trigger('close');
+      e.stopPropagation();
+    }
+  }, {
+    key: 'minimize',
+    value: function minimize(e) {
+      this.trigger('minimize');
+      e.stopPropagation();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      console.log(this.data.isMaximize);
+      return _ponnie2.default.vnode(
+        'div',
+        { 'class': 'app' + (this.data.isFocus ? ' is-focus' : '') + (this.data.isMinimize ? ' is-minimize' : '') + (this.data.isMaximize ? ' is-maximize' : ''), style: this.data.positionStyle, 'p-click': this.focus },
+        _ponnie2.default.vnode(
+          'div',
+          { 'class': 'app-header' },
+          _ponnie2.default.vnode(
+            'div',
+            { 'class': 'app-header-title' },
+            this.data.title
+          ),
+          _ponnie2.default.vnode(
+            'div',
+            { 'class': 'app-header-actions' },
+            _ponnie2.default.vnode(
+              'button',
+              { 'p-click': this.minimize },
+              '-'
+            ),
+            _ponnie2.default.vnode(
+              'button',
+              { 'p-click': this.maximize },
+              '+'
+            ),
+            _ponnie2.default.vnode(
+              'button',
+              { 'p-click': this.close },
+              'x'
+            )
+          )
+        ),
+        _ponnie2.default.vnode(
+          'div',
+          { 'class': 'app-content' },
+          _ponnie2.default.vnode('file-manager', null)
+        )
+      );
+    }
+  }]);
+
+  return App;
+}(_ponnie2.default.Component);
+
+exports.default = App;
+
+},{"../fs/manager/manager":11,"ponnie":2}],7:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _ponnie = require('ponnie');
+
+var _ponnie2 = _interopRequireDefault(_ponnie);
+
+var _taskbar = require('./taskbar');
+
+var _taskbar2 = _interopRequireDefault(_taskbar);
+
+var _app = require('../app/app');
+
+var _app2 = _interopRequireDefault(_app);
+
+var _fileBrowser = require('../fs/file-browser');
+
+var _fileBrowser2 = _interopRequireDefault(_fileBrowser);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+_ponnie2.default.register('taskbar', _taskbar2.default);
+_ponnie2.default.register('app', _app2.default);
+_ponnie2.default.register('file-browser', _fileBrowser2.default);
+
+var appId = 0;
+
+var Desktop = function (_ponnie$Component) {
+  _inherits(Desktop, _ponnie$Component);
+
+  function Desktop() {
+    _classCallCheck(this, Desktop);
+
+    return _possibleConstructorReturn(this, (Desktop.__proto__ || Object.getPrototypeOf(Desktop)).call(this, {
+      installedApps: [{
+        title: 'Pages'
+      }, {
+        title: 'Projects'
+      }, {
+        title: 'Media library'
+      }, {
+        title: 'Inbox'
+      }],
+      activeApps: []
+    }));
+  }
+
+  _createClass(Desktop, [{
+    key: 'newAppProcess',
+    value: function newAppProcess(i) {
+      appId++;
+      var appData = Object.assign({}, this.data.installedApps[i]);
+
+      appData.id = appId;
+      appData.index = i;
+      appData.isFocus = false;
+      appData.isMinize = false;
+      appData.isMaximize = false;
+
+      this.data.activeApps.push(appData);
+      this.focusApp(appData.id);
+    }
+  }, {
+    key: 'focusNextApp',
+    value: function focusNextApp() {
+      var _this2 = this;
+
+      this.data.activeApps.forEach(function (app) {
+        if (!app.isMinimize && !app.isFocus) {
+          _this2.focusApp(app.id);
+        }
+      });
+    }
+  }, {
+    key: 'closeApp',
+    value: function closeApp(appId) {
+      var reqAppIndex = this.data.activeApps.findIndex(function (app) {
+        return app.id === appId;
+      });
+      this.data.activeApps.splice(reqAppIndex, 1);
+      this.update();
+      this.focusNextApp();
+    }
+  }, {
+    key: 'toggleApp',
+    value: function toggleApp(appId) {
+      var _this3 = this;
+
+      this.data.activeApps.forEach(function (app) {
+        if (app.id === appId) {
+          if (app.isFocus) {
+            _this3.minimizeApp(appId);
+          } else {
+            _this3.focusApp(appId);
+          }
+        }
+      });
+    }
+  }, {
+    key: 'focusApp',
+    value: function focusApp(appId) {
+      console.log('focus', appId);
+      this.data.activeApps.forEach(function (app) {
+        app.isFocus = app.id === appId;
+        if (app.isFocus && app.isMinimize) {
+          app.isMinimize = false;
+        }
+      });
+      this.update();
+    }
+  }, {
+    key: 'blurApp',
+    value: function blurApp(appId) {
+      console.log('blur', appId);
+      var reqApp = this.data.activeApps.find(function (app) {
+        return app.id === appId;
+      });
+      reqApp.isFocus = false;
+      this.update();
+    }
+  }, {
+    key: 'minimizeApp',
+    value: function minimizeApp(appId) {
+      console.log('minimize', appId);
+      this.data.activeApps.forEach(function (app) {
+        if (app.id === appId) {
+          app.isMinimize = true;
+        }
+      });
+      this.blurApp(appId);
+      this.focusNextApp();
+    }
+  }, {
+    key: 'maximizeApp',
+    value: function maximizeApp(appId) {
+      console.log('maximize', appId);
+      this.data.activeApps.forEach(function (app) {
+        if (app.id === appId) {
+          app.isMaximize = true;
+        }
+      });
+      this.update();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this4 = this;
+
+      return _ponnie2.default.vnode(
+        'div',
+        { 'class': 'desktop' },
+        _ponnie2.default.vnode(
+          'div',
+          { 'class': 'desktop-apps' },
+          this.data.installedApps.map(function (app, i) {
+            return _ponnie2.default.vnode(
+              'div',
+              { 'p-dblclick': function pDblclick(e) {
+                  return _this4.newAppProcess(i);
+                } },
+              app.title
+            );
+          })
+        ),
+        _ponnie2.default.vnode(
+          'div',
+          { 'class': 'desktop-file-browser' },
+          _ponnie2.default.vnode('file-browser', null)
+        ),
+        this.data.activeApps.map(function (app) {
+          return _ponnie2.default.vnode('app', { 'p-key': 'app-' + app.id, title: _this4.data.installedApps[app.index].title, isMaximize: app.isMaximize, isMinimize: app.isMinimize, isFocus: app.isFocus, 'p-focus': function pFocus(e) {
+              return _this4.focusApp(app.id);
+            }, 'p-maximize': function pMaximize(e) {
+              return _this4.maximizeApp(app.id);
+            }, 'p-close': function pClose(e) {
+              return _this4.closeApp(app.id);
+            }, 'p-minimize': function pMinimize(e) {
+              return _this4.minimizeApp(app.id);
+            } });
+        }),
+        _ponnie2.default.vnode('taskbar', { activeApps: this.data.activeApps, 'p-toggle': function pToggle(e) {
+            return _this4.toggleApp(e.id);
+          } })
+      );
+    }
+  }]);
+
+  return Desktop;
+}(_ponnie2.default.Component);
+
+exports.default = Desktop;
+
+},{"../app/app":6,"../fs/file-browser":9,"./taskbar":8,"ponnie":2}],8:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _ponnie = require('ponnie');
+
+var _ponnie2 = _interopRequireDefault(_ponnie);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Taskbar = function (_ponnie$Component) {
+  _inherits(Taskbar, _ponnie$Component);
+
+  function Taskbar() {
+    _classCallCheck(this, Taskbar);
+
+    return _possibleConstructorReturn(this, (Taskbar.__proto__ || Object.getPrototypeOf(Taskbar)).call(this, {
+      activeApps: []
+    }));
+  }
+
+  _createClass(Taskbar, [{
+    key: 'toggleApp',
+    value: function toggleApp(appId) {
+      this.trigger('toggle', { id: appId });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _ponnie2.default.vnode(
+        'div',
+        { 'class': 'taskbar' },
+        this.data.activeApps.map(function (app) {
+          return _ponnie2.default.vnode(
+            'div',
+            { 'p-key': 'app-' + app.id, 'class': 'taskbar-item' + (app.isFocus ? ' is-focus' : ''), 'p-click': function pClick(e) {
+                return _this2.toggleApp(app.id);
+              } },
+            _ponnie2.default.vnode('div', { 'class': 'taskbar-item-icon' }),
+            _ponnie2.default.vnode(
+              'div',
+              { 'class': 'taskbar-item-title' },
+              app.title
+            )
+          );
+        })
+      );
+    }
+  }]);
+
+  return Taskbar;
+}(_ponnie2.default.Component);
+
+exports.default = Taskbar;
+
+},{"ponnie":2}],9:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _ponnie = require('ponnie');
+
+var _ponnie2 = _interopRequireDefault(_ponnie);
+
+var _file = require('./file');
+
+var _file2 = _interopRequireDefault(_file);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+_ponnie2.default.register('file', _file2.default);
+
+var FileBrowser = function (_ponnie$Component) {
+  _inherits(FileBrowser, _ponnie$Component);
+
+  function FileBrowser() {
+    _classCallCheck(this, FileBrowser);
+
+    var rand = Math.floor(Math.random() * 5);
+    var dirs = [];
+    var files = [];
+    for (var i = 0; i < rand; i++) {
+      dirs.push({
+        name: 'My directory'
+      });
+    }
+
+    rand = Math.floor(Math.random() * 20);
+    for (var _i = 0; _i < rand; _i++) {
+      files.push({
+        name: 'My file'
+      });
+    }
+
+    return _possibleConstructorReturn(this, (FileBrowser.__proto__ || Object.getPrototypeOf(FileBrowser)).call(this, {
+      dirs: dirs,
+      files: files
+    }));
+  }
+
+  _createClass(FileBrowser, [{
+    key: 'render',
+    value: function render() {
+      return _ponnie2.default.vnode(
+        'div',
+        { 'class': 'file-browser' },
+        _ponnie2.default.vnode(
+          'div',
+          { 'class': 'file-browser-items' },
+          this.data.dirs.map(function (dir) {
+            return _ponnie2.default.vnode(
+              'div',
+              { 'class': 'file-browser-dir' },
+              dir.name
+            );
+          }),
+          this.data.files.map(function (file) {
+            return _ponnie2.default.vnode('file', { name: file.name });
+          })
+        )
+      );
+    }
+  }]);
+
+  return FileBrowser;
+}(_ponnie2.default.Component);
+
+exports.default = FileBrowser;
+
+},{"./file":10,"ponnie":2}],10:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _ponnie = require('ponnie');
+
+var _ponnie2 = _interopRequireDefault(_ponnie);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var File = function (_ponnie$Component) {
+  _inherits(File, _ponnie$Component);
+
+  function File() {
+    _classCallCheck(this, File);
+
+    return _possibleConstructorReturn(this, (File.__proto__ || Object.getPrototypeOf(File)).call(this, {
+      name: 'My file',
+      size: '50kb',
+      type: 'JPEG-image',
+      isSelect: false
+    }));
+  }
+
+  _createClass(File, [{
+    key: 'toggle',
+    value: function toggle(e) {
+      if (e.detail > 1) {
+        return;
+      }
+
+      this.update({
+        isSelect: !this.data.isSelect
+      });
+    }
+  }, {
+    key: 'open',
+    value: function open(e) {
+      alert('now open' + this.data.name);
+      e.stopPropagation();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _ponnie2.default.vnode(
+        'div',
+        { 'class': 'file' + (this.data.isSelect ? ' is-select' : ''), 'p-click': this.toggle, 'p-dblclick': this.open },
+        _ponnie2.default.vnode(
+          'div',
+          { 'class': 'file-name' },
+          this.data.name
+        ),
+        _ponnie2.default.vnode(
+          'div',
+          { 'class': 'file-type' },
+          this.data.type
+        ),
+        _ponnie2.default.vnode(
+          'div',
+          { 'class': 'file-size' },
+          this.data.size
+        )
+      );
+    }
+  }]);
+
+  return File;
+}(_ponnie2.default.Component);
+
+exports.default = File;
+
+},{"ponnie":2}],11:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _ponnie = require('ponnie');
+
+var _ponnie2 = _interopRequireDefault(_ponnie);
+
+var _fileBrowser = require('../file-browser');
+
+var _fileBrowser2 = _interopRequireDefault(_fileBrowser);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+_ponnie2.default.register('file-browser', _fileBrowser2.default);
+
+var Manager = function (_ponnie$Component) {
+  _inherits(Manager, _ponnie$Component);
+
+  function Manager() {
+    _classCallCheck(this, Manager);
+
+    var rand = Math.floor(Math.random() * 5);
+    var dirs = [];
+    var files = [];
+    for (var i = 0; i < rand; i++) {
+      dirs.push({
+        name: 'My directory'
+      });
+    }
+
+    rand = Math.floor(Math.random() * 20);
+    for (var _i = 0; _i < rand; _i++) {
+      files.push({
+        name: 'My file'
+      });
+    }
+
+    return _possibleConstructorReturn(this, (Manager.__proto__ || Object.getPrototypeOf(Manager)).call(this, {
+      dirs: dirs,
+      files: files
+    }));
+  }
+
+  _createClass(Manager, [{
+    key: 'render',
+    value: function render() {
+      return _ponnie2.default.vnode(
+        'div',
+        { 'class': 'media-manager' },
+        _ponnie2.default.vnode('file-browser', null)
+      );
+    }
+  }]);
+
+  return Manager;
+}(_ponnie2.default.Component);
+
+exports.default = Manager;
+
+},{"../file-browser":9,"ponnie":2}],12:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _ponnie = require('ponnie');
+
+var _ponnie2 = _interopRequireDefault(_ponnie);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var LoginScreen = function (_ponnie$Component) {
+  _inherits(LoginScreen, _ponnie$Component);
+
+  function LoginScreen() {
+    _classCallCheck(this, LoginScreen);
+
+    return _possibleConstructorReturn(this, (LoginScreen.__proto__ || Object.getPrototypeOf(LoginScreen)).call(this, {
+      isLoading: false
+    }));
+  }
+
+  _createClass(LoginScreen, [{
+    key: 'login',
+    value: function login() {
+      var _this2 = this;
+
+      this.update({
+        isLoading: true
+      });
+
+      setTimeout(function () {
+        _this2.trigger('login');
+      }, 1000);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _ponnie2.default.vnode(
+        'div',
+        { 'class': 'login-screen' + (this.data.isLoading ? ' is-loading' : '') },
+        _ponnie2.default.vnode(
+          'div',
+          { 'class': 'login-screen-widget' },
+          _ponnie2.default.vnode(
+            'div',
+            { 'class': 'login-screen-title' },
+            'Bolster.'
+          ),
+          _ponnie2.default.vnode(
+            'div',
+            null,
+            'Bonjour, this is a demo login screen, just some temporary shizzle. Just press the button below to get to your desktop.'
+          ),
+          _ponnie2.default.vnode(
+            'button',
+            { 'p-click': this.login, 'class': 'login-screen-button' },
+            'Login'
+          )
+        )
+      );
+    }
+  }]);
+
+  return LoginScreen;
+}(_ponnie2.default.Component);
+
+exports.default = LoginScreen;
+
+},{"ponnie":2}],13:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _ponnie = require('ponnie');
+
+var _ponnie2 = _interopRequireDefault(_ponnie);
+
+var _desktop = require('../desktop/desktop');
+
+var _desktop2 = _interopRequireDefault(_desktop);
+
+var _loginScreen = require('./login-screen');
+
+var _loginScreen2 = _interopRequireDefault(_loginScreen);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+_ponnie2.default.register('desktop', _desktop2.default);
+_ponnie2.default.register('login-screen', _loginScreen2.default);
+
+var Root = function (_ponnie$Component) {
+  _inherits(Root, _ponnie$Component);
+
+  function Root() {
+    _classCallCheck(this, Root);
+
+    return _possibleConstructorReturn(this, (Root.__proto__ || Object.getPrototypeOf(Root)).call(this, {
+      isLoggedIn: false
+    }));
+  }
+
+  _createClass(Root, [{
+    key: 'login',
+    value: function login() {
+
+      this.update({
+        isLoggedIn: true
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+
+      if (!this.data.isLoggedIn) {
+        return _ponnie2.default.vnode('login-screen', { 'p-login': this.login });
+      }
+
+      return _ponnie2.default.vnode('desktop', null);
+    }
+  }]);
+
+  return Root;
+}(_ponnie2.default.Component);
+
+exports.default = Root;
+
+},{"../desktop/desktop":7,"./login-screen":12,"ponnie":2}],14:[function(require,module,exports){
+"use strict";
+
+var _ponnie = require('ponnie');
+
+var _ponnie2 = _interopRequireDefault(_ponnie);
+
+var _root = require('./components/os/root');
+
+var _root2 = _interopRequireDefault(_root);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_ponnie2.default.mount(new _root2.default(), document.body);
+
+},{"./components/os/root":13,"ponnie":2}]},{},[14]);

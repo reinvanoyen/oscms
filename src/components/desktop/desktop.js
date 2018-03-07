@@ -3,9 +3,11 @@
 import ponnie from 'ponnie';
 import Taskbar from './taskbar';
 import App from '../app/app';
+import FileBrowser from '../fs/file-browser';
 
 ponnie.register('taskbar', Taskbar);
 ponnie.register('app', App);
+ponnie.register('file-browser', FileBrowser);
 
 let appId = 0;
 
@@ -115,8 +117,11 @@ export default class Desktop extends ponnie.Component {
       <div class="desktop">
         <div class="desktop-apps">
           {this.data.installedApps.map((app, i) => {
-            return <div p-click={e => this.newAppProcess(i)}>{app.title}</div>
+            return <div p-dblclick={e => this.newAppProcess(i)}>{app.title}</div>
           })}
+        </div>
+        <div class="desktop-file-browser">
+          <file-browser />
         </div>
         {this.data.activeApps.map(app => {
           return <app p-key={'app-'+app.id} title={this.data.installedApps[app.index].title} isMaximize={app.isMaximize} isMinimize={app.isMinimize} isFocus={app.isFocus} p-focus={e => this.focusApp(app.id)} p-maximize={e => this.maximizeApp(app.id)} p-close={e => this.closeApp(app.id)} p-minimize={e => this.minimizeApp(app.id)}/>

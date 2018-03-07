@@ -1,8 +1,9 @@
 @import 'sass/reset';
 @import 'sass/animations';
+@import 'sass/util';
 @import 'sass/typography';
-@import 'sass/global';
 @import 'sass/colors';
+@import 'sass/global';
 
 html
 {
@@ -10,8 +11,17 @@ html
   font-size: 110%;
 }
 
+body
+{
+  background-color: $color06;
+  overflow: hidden;
+}
+
 // components
-@import 'components/desktop/desktop';
-@import 'components/desktop/taskbar';
-@import 'components/app/app';
-@import 'components/media/manager/manager';
+@import 'src/components/os/login-screen';
+@import 'src/components/desktop/desktop';
+@import 'src/components/desktop/taskbar';
+@import 'src/components/app/app';
+@import 'src/components/fs/file';
+@import 'src/components/fs/file-browser';
+@import 'src/components/fs/manager/manager';

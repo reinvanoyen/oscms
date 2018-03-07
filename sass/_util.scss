@@ -1,0 +1,39 @@
+@mixin loading-animation( $color )
+{
+  display: block;
+  width: $rule;
+  height: $rule;
+  border-radius: 50%;
+  border: 5px solid $color;
+  border-top-color: transparent;
+  animation: spin .5s linear infinite;
+}
+
+@mixin loading-state( $front-color, $back-color )
+{
+  &:after
+  {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -$rule / 2;
+    margin-left: -$rule / 2;
+    @include loading-animation( $front-color );
+    opacity: 1;
+    transition: opacity 1s;
+  }
+
+  &:before
+  {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba( $back-color, .85 );
+    animation: fadein .3s;
+  }
+}

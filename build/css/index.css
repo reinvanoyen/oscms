@@ -20,6 +20,8 @@ html {
   -ms-user-select: none;
   /* Internet Explorer/Edge */
   user-select: none; }
+  *:focus {
+    outline: none; }
 
 a {
   text-decoration: none;
@@ -44,6 +46,14 @@ button {
 
 button, input, textarea {
   font: inherit; }
+  button:focus, input:focus, textarea:focus {
+    outline: none; }
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
 
 @keyframes taskbar-new-item {
   from {
@@ -51,6 +61,11 @@ button, input, textarea {
     transform: scale(0.75); }
   50% {
     opacity: 1; } }
+
+@keyframes desktop-login {
+  from {
+    opacity: 0;
+    transform: translateY(100%); } }
 
 @keyframes app-open {
   from {
@@ -67,22 +82,90 @@ html {
   font-family: Muli, sans-serif;
   font-size: 110%; }
 
+body {
+  background-color: #2e4cff;
+  overflow: hidden; }
+
+.login-screen {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2e4cff; }
+  .login-screen.is-loading:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -1rem;
+    margin-left: -1rem;
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    border-top-color: transparent;
+    animation: spin .5s linear infinite;
+    opacity: 1;
+    transition: opacity 1s; }
+  .login-screen.is-loading:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(46, 76, 255, 0.85);
+    animation: fadein .3s; }
+
+.login-screen-widget {
+  color: #fff;
+  max-width: 30vh;
+  text-align: center;
+  font-size: 1.25rem; }
+
+.login-screen-title {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  line-height: 1;
+  margin-bottom: 2rem; }
+
+.login-screen-button {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  margin-top: 2rem;
+  padding: 0.2rem 2rem;
+  background-color: #fff;
+  border-radius: 0.75rem; }
+
 .desktop {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  padding: 10rem;
-  background-color: #eee; }
+  padding: 10rem 2rem 10rem 10rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: #eee;
+  animation: desktop-login .5s; }
 
 .desktop-apps {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  flex-grow: 1;
   font-size: 3rem;
   font-weight: 700;
   letter-spacing: .05em;
+  line-height: 1;
   color: #333; }
   .desktop-apps div {
     display: block;
@@ -91,6 +174,9 @@ html {
       color: #2e4cff; }
     .desktop-apps div:last-child {
       margin-bottom: 0; }
+
+.desktop-file-browser {
+  flex-grow: 1; }
 
 .taskbar {
   position: absolute;
@@ -203,10 +289,50 @@ html {
     .app-header-actions button:hover {
       background-color: #eee; }
 
+.file {
+  background-color: #eee;
+  padding: 1rem;
+  border: 3px solid #eee;
+  border-radius: 0.75rem;
+  transition: border-color .25s, background-color .25s; }
+  .file:hover {
+    background-color: #fff; }
+  .file.is-select {
+    border: 3px solid #2e4cff;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+    background-color: #fff; }
+
+.file-name {
+  font-weight: bold; }
+
+.file-type {
+  font-size: .75rem;
+  color: #555; }
+
+.file-size {
+  font-size: .75rem;
+  color: #555; }
+
+.file-browser {
+  padding: 2rem;
+  padding-top: 0; }
+
+.file-browser-items {
+  display: grid;
+  grid-template-columns: repeat(7, 5fr);
+  grid-gap: 1rem; }
+
+.file-browser-dir {
+  width: 5rem;
+  height: 5rem;
+  background-color: #fff; }
+
 .media-manager-items {
   display: grid;
-  grid-template-columns: repeat(10, 5fr);
-  grid-gap: 1rem; }
+  grid-template-columns: repeat(7, 5fr);
+  grid-gap: 1rem;
+  padding: 2rem;
+  padding-top: 0; }
 
 .media-manager-dir {
   width: 5rem;

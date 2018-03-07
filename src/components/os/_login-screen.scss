@@ -1,0 +1,40 @@
+.login-screen
+{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color06;
+
+  &.is-loading
+  {
+    @include loading-state( $color01, $color06 );
+  }
+}
+
+.login-screen-widget
+{
+  color: $color01;
+  max-width: 30vh;
+  text-align: center;
+  font-size: 1.25rem;
+}
+
+.login-screen-title
+{
+  @include title01;
+  margin-bottom: $rule;
+}
+
+.login-screen-button
+{
+  @include title02;
+  margin-top: $rule;
+  padding: $rule / 10 $rule;
+  background-color: $color01;
+  border-radius: $border-radius-01;
+}

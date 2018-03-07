@@ -1,8 +1,10 @@
 .media-manager-items
 {
   display: grid;
-  grid-template-columns: repeat( 10, 5fr );
-  grid-gap: 1rem
+  grid-template-columns: repeat( 7, 5fr );
+  grid-gap: $rule / 2;
+  padding: $rule;
+  padding-top: 0;
 }
 
 .media-manager-dir

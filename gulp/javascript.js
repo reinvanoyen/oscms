@@ -10,7 +10,7 @@ const gulp = require('gulp'),
 
 gulp.task('javascript', () => {
 
-  return browserify('index.js')
+  return browserify('src/index.js')
     .transform('babelify', {
       presets: ['es2015'],
       plugins: [
